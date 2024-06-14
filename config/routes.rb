@@ -19,7 +19,12 @@ Rails.application.routes.draw do
        resources :comments, only: [:index, :show, :create, :update, :destroy]
 
        # Rotas para Posts
-       resources :posts, only: [:index, :show, :create, :update, :destroy]
+      # Rotas para Posts
+      resources :posts, only: [:index, :show, :create, :update, :destroy] do
+        collection do
+          get 'all', to: 'posts#get_with_comments'
+        end
+      end
  
        # Rotas para Users
        resources :users, only: [:index, :show, :create, :update, :destroy]
@@ -30,8 +35,9 @@ Rails.application.routes.draw do
     #  patch 'comments/:id', to: 'comments#update'
     #  delete 'comments/:id', to: 'comments#destroy'
 
-    #  # Posts
+     # Posts
     #  get 'posts', to: 'posts#index'
+    #  get 'posts/all', to: 'posts#get_with_comments'
     #  get 'posts/:id', to: 'posts#show'
     #  post 'posts', to: 'posts#create'
     #  patch 'posts/:id', to: 'posts#update'
