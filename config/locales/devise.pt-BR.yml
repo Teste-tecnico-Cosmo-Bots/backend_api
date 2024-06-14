@@ -1,0 +1,31 @@
+pt-BR:
+  errors:
+    messages:
+      not_saved:
+        one: "1 erro impediu que este %{resource} fosse salvo:"
+        other: "%{count} erros impediram que este %{resource} fosse salvo:"
+      already_confirmed: "já foi confirmado, por favor faça login"
+      confirmation_period_expired: "precisa ser confirmado dentro de %{period}, por favor solicite um novo"
+      expired: "expirou, por favor solicite um novo"
+      not_found: "não encontrado"
+      already_authenticated: "Você já está logado."
+      not_locked: "não está bloqueado"
+      not_saved:
+        one: "1 erro impediu que este %{resource} fosse salvo:"
+        other: "%{count} erros impediram que este %{resource} fosse salvo:"
+      failure: "Não foi possível autenticar você de %{kind} porque \"%{reason}\"."
+      invalid: "E-mail ou senha inválidos."
+      invalid_token: "Token de autenticação inválido."
+      timeout: "Sua sessão expirou, por favor faça login novamente."
+      inactive: "Sua conta ainda não foi ativada."
+    models:
+      user:
+        attributes:
+          email:
+            blank: "não pode ficar em branco"
+            taken: "já está em uso"
+          password:
+            blank: "não pode ficar em branco"
+            confirmation: "não confere com a senha"
+          password_confirmation:
+            blank: "não pode ficar em branco"
