@@ -1,12 +1,10 @@
 class Api::V1::SessionsController < Devise::SessionsController
-  # before_action :set_user, only: [:show, :update, :destroy]
   skip_before_action :authenticate_user!, only: [:create]
 
   def create
     email = params[:email]
     password = params[:password]
     user = User.find_by(email: email)
-    
 
     if user && user.valid_password?(password)
       token = generate_jwt_token(user)

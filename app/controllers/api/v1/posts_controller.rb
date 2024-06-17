@@ -28,6 +28,7 @@ class Api::V1::PostsController < ApplicationController
   def create
     @post = Post.new(
       title: post_params[:title],
+      description: post_params[:description],
       content: post_params[:content],
       user: current_user
     )
@@ -71,6 +72,6 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :content)
+    params.require(:post).permit(:title, :content, :description)
   end
 end

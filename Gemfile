@@ -2,6 +2,7 @@ source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.6"
+gem 'rack-cors', require: 'rack/cors'
 gem "rails", "~> 7.0.8", ">= 7.0.8.4"
 gem "sqlite3", "~> 1.4"
 gem 'uuid', '~> 2.3'

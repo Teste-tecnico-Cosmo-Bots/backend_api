@@ -1,7 +1,7 @@
 class Api::V1::UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
   # before_action :authorize_user, only: [:show, :update, :destroy]
-  before_action :authenticate_user!, only: [:index]
+  before_action :authenticate_user!, only: [:index, :validate_token]
 
   def index
     if params[:page]
@@ -39,6 +39,22 @@ class Api::V1::UsersController < ApplicationController
   def destroy
     @user.destroy
     head :no_content
+  end
+
+  def validate_token
+    token = request.headers['Authorization']&.split(' ')&.last
+    decoded_token = JsonWebToken.decode(token)
+
+    if decoded_token
+      user = User.find_by(id: decoded_token[:user_id])
+      if user
+        render json: { id: user.id, nome: user.nome }
+      else
+        render json: { error: 'Usuário não existe' }, status: :unauthorized
+      end
+    else
+      render json: { error: 'Token inválido' }, status: :unauthorized
+    end
   end
 
   private
