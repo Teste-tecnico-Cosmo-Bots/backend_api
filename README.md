@@ -53,8 +53,23 @@ Forneça instruções sobre como implantar a aplicação, especialmente se houve
 
   - Descrição: Cria uma nova conta de usuário.
   - Parâmetros:
+    - `nome` (string, obrigatório): Nome do usuário.
     - `email` (string, obrigatório): Endereço de e-mail do usuário.
+    - `isAdmin` (booleano, obrigatório): Define se o usuário tem privilégios de administrador.
     - `password` (string, obrigatório): Senha do usuário.
+    - `password_confirmation` (string, obrigatório): Confirmação da senha do usuário.
+  - Exemplo de Requisição:
+
+    ```json
+    {
+      "nome": "João Silva",
+      "email": "joao.silva@example.com",
+      "isAdmin": false,
+      "password": "senha123",
+      "password_confirmation": "senha123"
+    }
+    ```
+
   - Retorna: Objeto JSON com detalhes do usuário e token de autenticação.
 
 - `POST /login`
@@ -106,7 +121,18 @@ Forneça instruções sobre como implantar a aplicação, especialmente se houve
   - Descrição: Cria um novo post.
   - Parâmetros:
     - `title` (string, obrigatório): Título do post.
+    - `description` (string, obrigatório): Descrição do post.
     - `content` (texto, obrigatório): Conteúdo do post.
+  - Exemplo de Requisição:
+
+    ```json
+    {
+      "title": "Swift: Desenvolvimento para iOS",
+      "description": "Explorando a linguagem Swift, criada pela Apple para desenvolvimento de aplicações iOS e macOS.",
+      "content": "Swift é uma linguagem de programação poderosa e intuitiva para desenvolvimento de aplicativos iOS e macOS. Introduzida pela Apple, ela combina a performance e eficiência de linguagens compiladas com a simplicidade e modernidade de linguagens de script. É projetada para ser segura e fácil de usar."
+    }
+    ```
+
   - Retorna: Objeto JSON com detalhes do post criado.
 
 - `PATCH /posts/:id`
