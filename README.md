@@ -32,9 +32,9 @@ Certifique-se de ter as seguintes dependências instaladas:
    ```
 3. Inicie o server:
 
-```
-bundle rails server
-```
+   ```
+   rails server
+   ```
 
 #### Serviços
 
