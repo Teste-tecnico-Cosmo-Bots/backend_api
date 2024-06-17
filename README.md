@@ -31,13 +31,6 @@ Certifique-se de ter as seguintes dependências instaladas:
    bundle install
    ```
 
-3. Configure o banco de dados:
-
-   ```bash
-   rails db:create
-   rails db:migrate
-   ```
-
 #### Serviços
 
 Liste quaisquer serviços de que o aplicativo depende, como filas de tarefas (job queues), servidores de cache ou mecanismos de busca.
