@@ -17,7 +17,8 @@ class Api::V1::CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(
-      body: params[:body],
+      title: comment_params[:title],
+      content: comment_params[:content],
       post: post_params,
       user: current_user
     )
@@ -55,6 +56,6 @@ class Api::V1::CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:body)
+    params.require(:comment).permit(:content, :title)
   end
 end

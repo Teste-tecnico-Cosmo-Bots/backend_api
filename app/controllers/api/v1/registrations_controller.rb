@@ -6,8 +6,13 @@ module Api
       def create
         build_resource(sign_up_params)
 
-        resource.save
-        render_resource(resource)
+        if resource.save
+          token = generate_jwt_token(resource)
+          render json: { token: token }, status: :created
+        else
+          clean_up_passwords resource
+          render json: { errors: resource.errors.full_messages }, status: :unprocessable_entity
+        end
       end
 
       def update
@@ -23,7 +28,7 @@ module Api
       private
 
       def sign_up_params
-        params.require(:user).permit(:email, :password, :password_confirmation, :nome)
+        params.permit(:email, :password, :password_confirmation, :nome)
       end
 
       def account_update_params
@@ -36,6 +41,10 @@ module Api
         else
           render json: resource.errors, status: :unprocessable_entity
         end
+      end
+
+      def generate_jwt_token(user)
+        JWT.encode({ user_id: user.id }, 'testedetoken', 'HS256')
       end
 
     end

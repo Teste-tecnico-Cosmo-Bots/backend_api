@@ -12,18 +12,30 @@ class Api::V1::PostsController < ApplicationController
     render json: @posts.as_json(
       include: {
         comments: {
-          only: [:id, :content, :created_at, :updated_at],
+          only: [:id,:title, :content, :created_at, :updated_at],
           include: { user: { only: [:id, :nome, :created_at, :updated_at] } }
         },
         user: { only: [:id, :nome, :created_at, :updated_at] }
-      }
+      },
+      methods: [:formatted_created_at_long, :formatted_created_at]
     )
   end
   
 
   def show
-    render json: @post
+    render json: @post.as_json(
+      include: {
+        user: { only: [:id, :nome, :created_at, :updated_at] },
+        comments: {
+          only: [:id,:title, :content, :created_at, :updated_at],
+          methods: [:formatted_created_at],
+          include: { user: { only: [:id, :nome, :created_at, :updated_at] } },
+        },
+      },
+      methods: [:formatted_created_at_long],
+    )
   end
+  
 
   def create
     @post = Post.new(
@@ -73,5 +85,9 @@ class Api::V1::PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :content, :description)
+  end
+
+  def one_params
+    params.require(:post).permit(:id)
   end
 end
