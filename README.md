@@ -21,7 +21,7 @@ Certifique-se de ter as seguintes dependências instaladas:
 1. Clone o repositório:
 
    ```bash
-   git clone <url-do-repositório>
+   git clone git@github.com:Teste-tecnico-Cosmo-Bots/backend_api.git
    cd <pasta-do-repositório>
    ```
 
