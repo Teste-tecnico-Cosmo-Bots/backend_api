@@ -30,6 +30,11 @@ Certifique-se de ter as seguintes dependências instaladas:
    ```bash
    bundle install
    ```
+3. Inicie o server:
+
+```
+bundle rails server
+```
 
 #### Serviços
 
