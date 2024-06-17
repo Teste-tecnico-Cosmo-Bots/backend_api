@@ -10,11 +10,12 @@ class PostPolicy < ApplicationPolicy
   end
 
   def create?
-    user.present? # Apenas usuários logados podem criar posts
+    user.present?#  Apenas usuários logados podem criar posts
   end
 
   def update?
-    user.present? && user == post.user # Apenas o autor do post pode atualizá-lo
+    # user.present? && user == post.user # Apenas o autor do post pode atualizá-lo
+    user.present?
   end
 
   def destroy?

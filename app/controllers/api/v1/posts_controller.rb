@@ -53,10 +53,21 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def update
-    authorize @post
+    # Atualiza os atributos do post
+    @post.assign_attributes(post_params)
 
-    if @post.update(post_params)
-      render json: @post
+    if @post.save
+      render json: @post.as_json(
+        include: {
+          user: { only: [:id, :nome, :created_at, :updated_at] },
+          comments: {
+            only: [:id, :title, :content, :created_at, :updated_at],
+            methods: [:formatted_created_at],
+            include: { user: { only: [:id, :nome, :created_at, :updated_at] } }
+          }
+        },
+        methods: [:formatted_created_at_long]
+      )
     else
       render json: @post.errors, status: :unprocessable_entity
     end

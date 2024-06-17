@@ -48,7 +48,7 @@ class Api::V1::UsersController < ApplicationController
     if decoded_token
       user = User.find_by(id: decoded_token[:user_id])
       if user
-        render json: { id: user.id, nome: user.nome }
+        render json: { id: user.id, nome: user.nome, isAdmin: user.isAdmin }
       else
         render json: { error: 'Usuário não existe' }, status: :unauthorized
       end
