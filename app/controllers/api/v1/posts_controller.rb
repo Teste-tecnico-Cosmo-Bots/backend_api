@@ -21,7 +21,6 @@ class Api::V1::PostsController < ApplicationController
     )
   end
   
-
   def show
     render json: @post.as_json(
       include: {
@@ -36,7 +35,6 @@ class Api::V1::PostsController < ApplicationController
     )
   end
   
-
   def create
     @post = Post.new(
       title: post_params[:title],
@@ -53,7 +51,6 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def update
-    # Atualiza os atributos do post
     @post.assign_attributes(post_params)
 
     if @post.save
@@ -80,8 +77,6 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def get_with_comments
-    # posts = Post.includes(:comments).order(created_at: :desc)
-  
     render status: 200
   end
   
