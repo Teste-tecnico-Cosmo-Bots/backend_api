@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: my-rails-app
+    env: ruby
+    plan: starter
+    buildCommand: bundle install && bundle exec rake assets:precompile db:migrate
+    startCommand: bundle exec rails server -b 0.0.0.0 -p 10000
