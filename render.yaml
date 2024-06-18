@@ -3,11 +3,7 @@ services:
     name: my-rails-app
     env: ruby
     plan: starter
-    buildCommand: |
-      bundle config set --local without 'development:test'
-      bundle install --path vendor/bundle --clean
-      bundle exec rake db:migrate
-      bundle exec rake assets:precompile
+    buildCommand: bundle install && bundle exec rake db:migrate
     startCommand: bundle exec rails server -b 0.0.0.0 -p 10000
     envVars:
-      SECRET_KEY_BASE: <%= Rails.application.credentials.secret_key_base %>
+      RAILS_MASTER_KEY: <%= Rails.application.credentials.config[:rails][:secret_key_base] %>
