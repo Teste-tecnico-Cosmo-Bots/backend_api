@@ -1,0 +1,17 @@
+version: "3"
+services:
+  web:
+    build: .
+    command: bundle exec rails server -b 0.0.0.0 -p 3000
+    volumes:
+      - ".:/myapp"
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: sqlite3:///myapp/db/blogCosmoBots.sqlite3
+    entrypoint:
+      [
+        "sh",
+        "-c",
+        "bundle exec rake db:create db:migrate && bundle exec rails server -b 0.0.0.0 -p 3000",
+      ]
