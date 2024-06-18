@@ -9,3 +9,5 @@ services:
       bundle exec rake db:migrate
       bundle exec rake assets:precompile
     startCommand: bundle exec rails server -b 0.0.0.0 -p 10000
+    envVars:
+      SECRET_KEY_BASE: <%= Rails.application.credentials.secret_key_base %>
