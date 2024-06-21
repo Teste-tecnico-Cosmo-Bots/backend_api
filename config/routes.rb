@@ -38,6 +38,9 @@ Rails.application.routes.draw do
       patch 'users/:id', to: 'users#update'
       delete 'users/:id', to: 'users#destroy'
 
+      # Likes
+      get 'like', to: 'like#index'
+      post 'like', to: 'like#toggle_like'
       
     end
   end

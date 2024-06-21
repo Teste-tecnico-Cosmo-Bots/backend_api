@@ -15,7 +15,9 @@ class Api::V1::PostsController < ApplicationController
           only: [:id,:title, :content, :created_at, :updated_at],
           include: { user: { only: [:id, :nome, :created_at, :updated_at] } }
         },
-        user: { only: [:id, :nome, :created_at, :updated_at] }
+        user: { only: [:id, :nome, :created_at, :updated_at] },
+        like: {}
+
       },
       methods: [:formatted_created_at_long, :formatted_created_at]
     )
@@ -30,6 +32,7 @@ class Api::V1::PostsController < ApplicationController
           methods: [:formatted_created_at],
           include: { user: { only: [:id, :nome, :created_at, :updated_at] } },
         },
+        like: {}
       },
       methods: [:formatted_created_at_long],
     )

@@ -2,6 +2,7 @@ class User < ApplicationRecord
   # Relacionamentos
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
   
   # Garanta que um UUID seja 
   before_create :generate_uuid
